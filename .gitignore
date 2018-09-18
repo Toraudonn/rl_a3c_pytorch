@@ -2,3 +2,7 @@
 .DS_Store
 logs
 trained_models
+
+
+# Python stuff
+__pycache__
