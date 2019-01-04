@@ -1,0 +1,4 @@
+{
+    "python.linting.enabled": false,
+    "python.pythonPath": "/home/haruishi/.pyenv/versions/anaconda3-5.2.0/bin/python"
+}

@@ -23,7 +23,7 @@ def train(rank, args, shared_model, optimizer, env_conf):
             optimizer = optim.Adam(
                 shared_model.parameters(), lr=args.lr, amsgrad=args.amsgrad)
     env.seed(args.seed + rank)
-    player = Agent(None, env, args, None)
+    player = Agent(None, env, args, None)  # init agent
     player.gpu_id = gpu_id
     player.model = A3Clstm(player.env.observation_space.shape[0],
                            player.env.action_space)
@@ -39,6 +39,7 @@ def train(rank, args, shared_model, optimizer, env_conf):
     while True:
         if gpu_id >= 0:
             with torch.cuda.device(gpu_id):
+                # 
                 player.model.load_state_dict(shared_model.state_dict())
         else:
             player.model.load_state_dict(shared_model.state_dict())

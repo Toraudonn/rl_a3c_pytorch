@@ -140,7 +140,7 @@ if __name__ == '__main__':
             '{0}{1}.dat'.format(args.load_model_dir, args.env),
             map_location=lambda storage, loc: storage)
         shared_model.load_state_dict(saved_state)
-    shared_model.share_memory()
+    shared_model.share_memory()  # share all params (tensor) using(tensor.share_memory_())
 
     if args.shared_optimizer:
         if args.optimizer == 'RMSprop':
@@ -151,6 +151,9 @@ if __name__ == '__main__':
         optimizer.share_memory()
     else:
         optimizer = None
+
+
+    # start multiprocessing:
 
     processes = []
 
